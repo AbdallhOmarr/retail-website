@@ -25,7 +25,7 @@ SECRET_KEY = "kjsdakfji34u2907417-$1^g)0#%+$!_0%nwb3v%(frorn&#05oa1&gd7f!z9hr@8*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["abdalla-omar.azurewebsites.net"]
+ALLOWED_HOSTS = ["abdalla-omar.azurewebsites.net","127.0.0.1"]
 
 
 # Application definition

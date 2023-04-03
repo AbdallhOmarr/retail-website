@@ -23,7 +23,8 @@ urlpatterns = [
     path("", views.about, name="about"),
     path("", views.client, name="client"),
     path("", views.contact, name="contact"),
-    # path("", views.index, name="client"),
-    # path("", views.index, name="client"),
+    path('login_register/', views.login_or_register, name='login_register'),
+    path('checkout/', views.checkout, name='checkout'),
+    path('logout/', views.logout, name='logout'),
 
 ]

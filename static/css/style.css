@@ -937,3 +937,30 @@ button {
 .margin_top90 {
     margin-top: 90px;
 }
+
+
+.user-hover-card {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    z-index: 1;
+}
+
+.navbar-nav .nav-link:hover + .user-hover-card,
+.user-hover-card:hover {
+    display: block;
+}
+.navbar .nav-item .nav-link {
+    color: black !important;
+  }
+  
+  
+  .logout-icon{
+    color:gray;
+    width: 21px;
+    height: 22px;
+  }
