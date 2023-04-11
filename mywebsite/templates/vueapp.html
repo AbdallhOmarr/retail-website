@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js Example</title>
+    <script src="https://unpkg.com/vue@3.2.30/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" v-model="name">
+            <p>Hello, [[ name ]]!</p>
+        </div>
+        <div>
+            <form @submit.prevent="addTodo">
+                <input v-model="newtodo">
+                <button>addtodo</button>
+            </form>
+        </div>
+        <div>
+            <ul>
+                <li v-for="todo in todos" :key="todo.id">
+                    [[todo.text]]
+                    <button @click="removeTodo(todo)">X</button>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let id = 0
+        const app = Vue.createApp({
+            data() {
+                return {
+                    name: '',
+                    newtodo: '',
+                    todos: [
+                        { id: id++, text: "Learn Python" },
+                        { id: id++, text: "Learn Django" },
+                        { id: id++, text: "Learn Html" },
+                        { id: id++, text: "Learn CSS" },
+                        { id: id++, text: "Learn Vue" },
+
+                    ]
+                }
+            },
+            delimiters: ['[[', ']]'],
+            methods: {
+                addTodo() {
+                    this.todos.push({ id: id++, text: this.newtodo })
+
+                    this.newtodo = ''
+                },
+                removeTodo(todo) {
+                    this.todos = this.todos.filter((t) => t !== todo)
+                }
+
+            }
+        })
+
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

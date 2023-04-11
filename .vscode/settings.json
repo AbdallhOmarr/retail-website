@@ -1,5 +1,5 @@
 {
-    "emmet.syntaxProfiles": {
-        "django-html": "html",
+    "emmet.includeLanguages": {
+        "django-html": "html"
     }
 }

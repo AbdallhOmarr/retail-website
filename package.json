@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "vue": "^3.2.47"
+  },
+  "name": "retail-website",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbdallhOmarr/retail-website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbdallhOmarr/retail-website/issues"
+  },
+  "homepage": "https://github.com/AbdallhOmarr/retail-website#readme",
+  "description": ""
+}

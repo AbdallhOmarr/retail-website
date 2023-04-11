@@ -25,6 +25,7 @@ urlpatterns = [
     path("", views.contact, name="contact"),
     path('login_register/', views.login_or_register, name='login_register'),
     path('checkout/', views.checkout, name='checkout'),
-    path('logout/', views.logout, name='logout'),
+    path('logout/', views.logout_function, name='logout'),
+    path('vueapp',views.vueapp,name='vueapp')
 
 ]

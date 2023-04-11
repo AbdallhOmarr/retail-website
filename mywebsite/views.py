@@ -1,13 +1,15 @@
 
 
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 import uuid
 from django.contrib import messages
 # Create your views here.
 
-
+def vueapp(request):
+    return render(request,"vueapp.html")
+    
 def home(request):
     return render(request, "index.html")
 
@@ -76,9 +78,10 @@ def login_or_register(request):
             print("void")
     return render(request, 'login_register.html', {'form': login_form, 'register_form': register_form})
 
-def logout(request):
+def logout_function(request):
     context = {}
-    return render(request,"login_register.html",context)
+    logout(request)
+    return render(request,"index.html",context)
 
 def checkout(request):
     context = {}

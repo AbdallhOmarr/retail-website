@@ -36,55 +36,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
 </head>
 
 <body>
     <!-- header section start -->
     <div class="header_section">
-        <div class="container-fluid">
-            <nav class="navbar navbar-light bg-light justify-content-between">
-                <div id="mySidenav" class="sidenav">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <a href="{% url 'index' %}">Home</a>
-                    <a href="{% url 'products' %}">Products</a>
-                    <a href="{% url 'about' %}">About</a>
-                    <a href="{% url 'client' %}">Client</a>
-                    <a href="{% url 'contact' %}">Contact</a>
-                </div>
-                <span class="toggle_icon" onclick="openNav()"><img src="{% static 'images/toggle-icon.png' %}"></span>
-                <a class="logo" href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}"></a></a>
-                <form class="form-inline ">
-                    <div class="login_text">
-                        <ul>
-                            {% if user.is_authenticated %}
-                            <li><a href="#"><img src="{% static 'images/user-icon.png' %}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Welcome, {{ user.username }}"></a></li>
-                            <li><a href="{% url 'logout' %}"><img class="logout-icon" src="{% static 'images/logout.png' %}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="logout"></a></li>
-
-                            {% else %}
-                            <li><a href="{% url 'login_register'%}"><img  src="{% static 'images/user-icon.png' %}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Guest"></a></li>
-                            {% endif %}
-                            <li><a href="#"><img src="{% static 'images/bag-icon.png' %}"></a></li>
-                            <li><a href="#"><img src="{% static 'images/search-icon.png' %}"></a></li>
-                        </ul>
-                    </div>
-                </form>
-                                </nav>
-        </div>
+        {% include 'navbar.html' %}
     </div>
     {% comment %} <!-- Hover card -->
     <div class="user-hover-card">
         {% if user.is_authenticated %}
-            <p>Welcome, {{ user.username }}!</p>
-            <a href="{% url 'logout'%}">Logout</a>
+        <p>Welcome, {{ user.username }}!</p>
+        <a href="{% url 'logout'%}">Logout</a>
         {% else %}
-            <p>Welcome, Guest!</p>
-            <a href="{% url 'login_register'%}">Login/Register</a>
+        <p>Welcome, Guest!</p>
+        <a href="{% url 'login_register'%}">Login/Register</a>
         {% endif %}
     </div> {% endcomment %}
 
     <!-- header section end -->
     <!-- banner section start -->
-        {% block content %}{% endblock content %}
+    {% block content %}{% endblock content %}
     <!-- banner section end -->
     <!-- Javascript files-->
     <script>
@@ -93,7 +67,7 @@
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
     </script>
-    
+
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
@@ -115,6 +89,49 @@
             document.getElementById("mySidenav").style.width = "0";
         }
     </script>
+    
+<script>
+    const { createApp } = Vue
+    createApp({
+        data() {
+            return {
+                links: ["Home", "Products", "Location", "About"],
+                logged:true
+            }
+        },
+        delimiters: ["[[", "]]"]
+    }).mount("nav")
+
+</script>
 </body>
 
 </html>
+
+<!-- 
+<nav class="navbar navbar-light bg-light justify-content-between">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'products' %}">Products</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'client' %}">Client</a>
+        <a href="{% url 'contact' %}">Contact</a>
+    </div>
+    <span class="toggle_icon" onclick="openNav()"><img src="{% static 'images/toggle-icon.png' %}"></span>
+    <a class="logo" href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}"></a></a>
+    <form class="form-inline ">
+        <div class="login_text">
+            <ul>
+                {% if user.is_authenticated %}
+                <li><a href="#"><img src="{% static 'images/user-icon.png' %}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Welcome, {{ user.username }}"></a></li>
+                <li><a href="{% url 'logout' %}"><img class="logout-icon" src="{% static 'images/logout.png' %}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="logout"></a></li>
+
+                {% else %}
+                <li><a href="{% url 'login_register'%}"><img  src="{% static 'images/user-icon.png' %}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Guest"></a></li>
+                {% endif %}
+                <li><a href="#"><img src="{% static 'images/bag-icon.png' %}"></a></li>
+                <li><a href="#"><img src="{% static 'images/search-icon.png' %}"></a></li>
+            </ul>
+        </div>
+    </form>
+                    </nav> -->
