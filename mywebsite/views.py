@@ -86,3 +86,8 @@ def logout_function(request):
 def checkout(request):
     context = {}
     return render(request,"checkout.html",context)
+
+def mycart(request):
+    context = {}
+    
+    return render(request,"cart.html",context)
