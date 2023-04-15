@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 import uuid
 from django.contrib import messages
+from .models import Product
 # Create your views here.
 
 def vueapp(request):
@@ -16,6 +17,16 @@ def home(request):
 
 def products(request):
     return render(request, "index.html")
+
+
+def product_detail(request , slug):
+    product_detail = Product.objects.get(Slug=slug)
+    context = {
+        'product_detail':product_detail,
+        }
+    return render(request,'product_detail.html',context)
+
+
 
 
 def about(request):

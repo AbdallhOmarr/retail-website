@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import Group,Permission
+from django.utils.text import slugify
 
 
 class Category(models.Model):
@@ -36,13 +37,31 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(upload_to='product_images/')
+    discountprice = models.DecimalField(max_digits=5,null=True,blank=True, decimal_places=2, verbose_name=("Discount Price"))
+
+    MainImage = models.ImageField(upload_to='product_images/')
+    image2 = models.ImageField(upload_to='product_images/',null=True,blank=True, verbose_name=("Image2"))
+    image3 = models.ImageField(upload_to='product_images/',null=True,blank=True, verbose_name=("Image3"))
+    image4 = models.ImageField(upload_to='product_images/',null=True,blank=True, verbose_name=("Image4"))
+    
+    brand = models.CharField(max_length=255,blank=True, null=True )
+    Slug = models.SlugField(blank=True, null=True)
     available = models.BooleanField(default=True)
+    new = models.BooleanField(default=True, verbose_name=("New Product"))
+    bestseller = models.BooleanField(default=False, verbose_name=("Best Seller"))
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         return self.name
+    
+    def save(self,*args, **kwargs):
+        if not self.Slug:
+            self.Slug = slugify(self.name)
+        super(Product,self).save(*args,**kwargs)
 
+
+    
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
