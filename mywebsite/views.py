@@ -11,7 +11,9 @@ def vueapp(request):
     return render(request,"vueapp.html")
     
 def home(request):
-    return render(request, "index.html")
+    resp = render(request, "index.html")
+    resp.set_cookie('dev_name','Abdalla')
+    return resp
 
 
 def products(request):
