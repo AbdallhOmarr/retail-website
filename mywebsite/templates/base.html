@@ -55,12 +55,12 @@
         <!-- header section start -->
         <div class="header_section">{% include 'navbar.html' %}</div>
         {% comment %} <!-- Hover card -->
-            <div class="user-hover-card">
-                {% if user.is_authenticated %}
-                <p>Welcome, {{ user.username }}!</p>
-            <a href="{% url 'logout'%}">Logout</a>
-            {% else %}
-            <p>Welcome, Guest!</p>
+                                                    <div class="user-hover-card">
+                                                        {% if user.is_authenticated %}
+                                                        <p>Welcome, {{ user.username }}!</p>
+                                <a href="{% url 'logout'%}">Logout</a>
+                                {% else %}
+                                <p>Welcome, Guest!</p>
         <a href="{% url 'login_register'%}">Login/Register</a>
         {% endif %}
 </div> {% endcomment %}
@@ -81,8 +81,6 @@
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
 <script src="{% static 'js/plugin.js' %}"></script>
-
-
 <!-- sidebar -->
 <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
@@ -103,18 +101,7 @@
             document.getElementById("mySidenav").style.width = "0";
         }
 </script>
-<script>
-    const { createApp } = Vue
-    createApp({
-        data() {
-            return {
-                links: ["Home", "Products", "Location", "About"],
-                logged:true
-            }
-        },
-        delimiters: ["[[", "]]"]
-    }).mount("nav")
-
-</script>
+<script src="{% static 'js/vuecomponents.js' %}"></script>
+<script src="{% static 'js/vue.js' %}"></script>
 </body>
 </html>
