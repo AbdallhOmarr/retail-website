@@ -1,20 +1,37 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-  <div class="row">
-    <div class="col-md-5 mb-4 images">
+
+<div  id="single">
+
+<div class="row d-flex" style="background-color: #fff;">
+
+  <div class="row col-md-9 mt-2 contain">
+
+
+    <div class="track_product">
+      <nav class="track"  style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a  style="text-decoration: none;" href="#">Home</a></li>
+          <li class="breadcrumb-item" aria-current="page"><a  style="text-decoration: none;"   href="#">phones</a></li>
+          <li class="breadcrumb-item" aria-current="page"><a  style="text-decoration: none;" href="#">i phone</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a  style="text-decoration: none;"  href="#">i phone11 pro max</a></li>
+        </ol>
+      </nav>
+    </div> 
+
+    <div class="col-md-6 mb-4 images">
+    
       <div class="product_img">
-        <div class="main w-100  col-10">
+        <div class="main">
           {% if product_detail.MainImage %}
-            <img height="380px"
-                 src="{{ product_detail.MainImage.url }}"
+            <img src="{{ product_detail.MainImage.url }}"
                  name="main"
                  alt="">
           {% endif %}
         </div>
-        <div class="photos col-2">
+        <div class="photos mt-2 w-100">
           <img onclick="main.src = this.src"
-               style="margin-top: 40px"
                width="50px"
                height="50px"
                src="{{ product_detail.MainImage.url }}"
@@ -60,172 +77,163 @@
           {% endif %}
         </div>
       </div>
-      <div class="share_product mt-4" style="margin-left: 40px;">
-        <span style="margin-top: 10px;font-weight: 600;font-size: 18px;">SHARE THIS PRODUCT :</span>
-        <br>
-        <a class="btn text-white btn-floating m-1 mt-3"
-           style="background-color: #3b5998;
-                  border-radius: 50%;
-                  font-size: 20px;
-                  width: 40px;
-                  height: 40px"
-           href="#!"
-           role="button">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a class="btn text-white btn-floating m-1 mt-3"
-           style="background-color: #55acee;
-                  border-radius: 50%;
-                  font-size: 20px"
-           href="#!"
-           role="button">
-          <i class="fab fa-twitter"></i>
-        </a>
-      </div>
+
     </div>
-    <div class="col-md-7 mb-4 informations">
-      <div style="display: flex;justify-content: end;">
-        <i class="fa-regular fa-heart favo"
-           style="margin-right: 40px;
-                  font-size: 30px"
-           data-bs-toggle="modal"
-           data-bs-target="#exampleModal"></i>
-      </div>
-      <div class="modal fade"
-           id="exampleModal"
-           tabindex="-1"
-           aria-labelledby="exampleModalLabel"
-           aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="head_model">
-              <h1 style="margin-left: 10px;
-                         margin-top: 8px"
-                  class="modal-title fs-5"
-                  id="exampleModalLabel">Please select a variation</h1>
-              <button style="margin-left: 230px;
-                             margin-top: 8px"
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"></button>
-            </div>
-            <div class="modal-body" style="margin-top: 10px;">
-              <div class="size-button">
-                <button class="size-option">S</button>
-                <button class="size-option">M</button>
-                <button class="size-option">L</button>
-                <button class="size-option">XL</button>
-                <button class="size-option">XXL</button>
-              </div>
-            </div>
-            <button @click="isfavorite = !isfavorite"  class="btn btn-danger m-3">
-              ADD TO FAVORITE LIST
-              <i class="fa-regular fa-heart"
-                 style="color: #fff;
-                        font-size: 22px;
-                        transform: translate(10%,10%)"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="p-4">
-        <div class="d-flex">
-          <span class="bdg">Official Store</span>
-        </div>
-        <strong>
-          <h5 style="font-size: 20px; margin-top: 8px;">{{ product_detail }}</h5>
-        </strong>
-        {% if product_detail.brand %}
-          <h6>
-            Brand: {{ product_detail.brand }} | <a href="#" class="outher">Similar products from {{ product_detail.brand }}</a>
-          </h6>
-        {% endif %}
+    <div class="col-md-6 mb-4  informations">
+     
+      <div class="p-3">
+          <h5 style="font-size: 34px; margin-top: 8px;font-weight: bold;">{{ product_detail }}</h5>
+          <h6 class="mt-4">Upgrade your life with the powerful, intuitive, and stylish iPhone - a device for every occasion</h6>
         <div class="rating">
           <div class="star-rating">
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
+            <span style="font-size: 16px;"  class="star">&#9733;</span>
+            <span style="font-size: 16px;"  class="star">&#9733;</span>
+            <span style="font-size: 16px;"  class="star">&#9733;</span>
+            <span style="font-size: 16px;"  class="star">&#9733;</span>
+            <span style="font-size: 16px;" class="star">&#9733;</span>
           </div>
-          <h6 class="rate mt-2">(No ratings available)</h6>
+          <h6 class="rate" style="margin-top: 5px;font-size: 12px;">(No ratings available)</h6>
         </div>
-        <div class="mb-3 mt-3">
-          {% if product_detail.discountprice > 0 %}
-            <a href="">
-              <span class="badge bg-success me-1"
-                    style="font-size: 14px;
-                           border-radius: 4px">SALE</span>
-            </a>
-          {% endif %}
-          {% if product_detail.new %}
-            <a href="">
-              <span class="badge bg-info me-1" style="font-size: 14px;">NEW</span>
-            </a>
-          {% endif %}
-          {% if product_detail.bestseller %}
-            <a href="">
-              <span class="badge bg-danger me-1" style="font-size: 14px;">BestSeller</span>
-            </a>
-          {% endif %}
-        </div>
-        <hr>
         <h6>
-          <span style="font-size: 22px;font-weight: 600;">Price :</span>
           {% if product_detail.discountprice > 0 %}
-            <span style="margin-left: 4px;font-size: 20px;">{{ product_detail.discountprice }}</span>
-            <span style="font-size: 20px;font-weight: 500;margin-left: 4px;">instead of</span>
-            <span class="me-1">
-              <del style="margin-left: 4px;font-size: 20px;">{{ product_detail.price }}</del>
-            </span>
+          <span class="me-1">
+            <del style="margin-left: 4px;font-size: 18px;">${{ product_detail.price }} </del>
+          </span>
+            <span style="margin-left: 4px;font-size: 24px;color: rgb(173, 58, 58);">${{ product_detail.discountprice }}</span>
+            <span style="margin-left: 5px;font-size: 16px;"> 50% off |</span>
+
+          
           {% else %}
-            <span style="margin-left: 4px;font-size: 20px;">{{ product_detail.price }}</span>
+            <span style="margin-left: 4px;font-size: 20px;">${{ product_detail.price }}</span>
           {% endif %}
         </h6>
-        <h4>Description</h4>
-        <span style="font-size: 14px;">{{ product_detail.description }}</span>
-      </div>
+    
       <hr>
-      <div class="sizes">
-        <!-- <strong><p>VARIATION AVAILABLE</p></strong> -->
-        <h5 style="font-weight: bold;">
-          VARIATION AVAILABLE
-        </h5>
-        <div class="size-button" style="margin-top: 25px;">
-          <button class="size-option">
-            S
-          </button>
-          <button class="size-option">
-            M
-          </button>
-          <button class="size-option">
-            L
-          </button>
-          <button class="size-option">
-            XL
-          </button>
-          <button class="size-option">
-            XXL
-          </button>
-        </div>
-      </div>
-      <form class="d-flex justify-content-between" style="margin-top: 30px;">
+
+
         <!-- Default input -->
-        <div class="form-outline me-1 d-flex" style="width: 150px;">
-          <span class="count">Quantity  :</span>
-          <input style="margin-left: 4px;
-                        width: 120px"
-                 type="number"
-                 value="1"
-                 class="form-control"
-                 min="1" />
+        <div>
+          <div class="d-flex">
+           <div class="quantity">
+          <button class="minus" @click="decrement">-</button>
+         <label class="num"> <% quantity %> </label>
+          <button class="plus"  @click="increment">+</button>
         </div>
-        <button class="btn btn-primary ms-1 cart" type="submit">
-          Add to cart
-          <i class="fas fa-shopping-cart ms-1"></i>
-        </button>
+        <strong><p class="tquant">only <a style="color: orange;">{{ product_detail.quantity}} items </a> left! <br> Don't miss it</p></strong>
+      </div>
+
+        <form class="d-flex" style="margin-top: 30px;">
+      <button class="buy">Buy Now</button>
+      <div class="btn btn-outline-success cart">Add To Cart</div>
       </form>
     </div>
   </div>
-{% endblock %}
+    </div>
+  </div>
+
+  <div class="col-md-3 seller_infrmation">
+<div class="seller d-flex mb-4" style="width: 100px;">
+  <img src="{%static 'images/seller.png' %}" class="sell" width="65px" height="65px">
+  
+  <p style="white-space: nowrap;margin-top: 26px;">Sold By<a href="#"> {{ product_detail.brand }}</a></p>
+
+  <p class="per"><a class="evalution" style="color: #fff;">4.6<span style="font-size: 14px;">&#9733;</span> </a>91% Positive Rating</p>
+</div>
+<hr>
+<div class="delivery">
+  <div class="d-flex mt-2">
+    <img src="{%static 'images/return.png' %}" class="car" width="60px" height="60px">
+    <p style="font-weight: bold;font-size: 14px;" class="return">FREE RETURNS</p>
+    <p  class="treturn">Get free returns on eligible items</p>
+    </div>
+  <div class="d-flex mt-4">
+<img src="{%static 'images/security.png' %}" class="car" width="65px" height="65px">
+<p style="font-weight: bold;font-size: 14px;" class="security">TRUSTED SHIPPING</p>
+<p  class="tsecurity">
+  Your data is always protected</p>
+</div>
+
+<div class="d-flex mt-4" style="margin-left: 6px;">
+  <img src="{%static 'images/ok.png' %}" class="car" width="60px" height="60px">
+  <p style="font-weight: bold;font-size: 14px;" class="quality">HIGH QUALITY</p>
+  <p  class="tquality">Our quality speaks for itself</p>
+  </div>
+
+</div>
+<hr>
+    <div class="advan d-flex">
+      <div style="margin-left: 40px;">
+    <img src="{%static 'images/car shipping.png' %}" class="car" width="65px" height="65px">
+    <span style="font-weight: bold;"> SpeedShipping</span>
+  </div>
+  <div style="margin-left: 50px;">
+    <img src="{%static 'images/honor.png' %}" class="honor" width="65px" height="65px">
+
+    <span style="font-weight: bold;font-size: 17x;"> 100%Genuine</span>
+  </div>
+  </div>
+
+  </div>
+
+
+
+
+
+</div>
+
+<div class="product_detail">
+  <ul class="tabs-choose">
+    <li @click="activeTab = '1'" :class="[activeTab === '1' ? 'active' : '' ]">OVERVIEW</li>
+    <li @click="activeTab = '2'" :class="[activeTab === '2' ? 'active' : '' ]">REVIEWS</li>
+   </ul>
+
+  <div class="tabs-content">
+    <div class="content-one" v-if="activeTab==='1' " >Content One</div>
+  <div class="content-one" v-if="activeTab==='2' ">Content Two</div>
+  </div>
+     
+
+</div>
+
+
+
+
+</div>
+
+
+
+ <script src="{% static 'js/vue.js' %}"></script>
+
+  <script>
+    var count = JSON.parse('{{ product_detail.quantity |safe }}');
+</script>
+ 
+  <script>
+    var vm = new Vue({
+      el: '#single',
+      data: {
+        quantity:1,
+        count:count,
+        activeTab:"1",
+      },
+        
+  delimiters: ["<%","%>"],
+
+
+  methods: {
+    increment() {
+      if (this.quantity < count ) {
+      this.quantity++;
+    }
+    },
+    decrement() {
+      if (this.quantity > 1) {
+        this.quantity--;
+      }
+    },
+  }
+
+})
+
+</script> 
+ {% endblock %}

@@ -39,6 +39,8 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     discountprice = models.DecimalField(max_digits=5,null=True,blank=True, decimal_places=2, verbose_name=("Discount Price"))
 
+    quantity = models.DecimalField(max_digits=5, decimal_places=0,default=1)
+
     MainImage = models.ImageField(upload_to='product_images/')
     image2 = models.ImageField(upload_to='product_images/',null=True,blank=True, verbose_name=("Image2"))
     image3 = models.ImageField(upload_to='product_images/',null=True,blank=True, verbose_name=("Image3"))
