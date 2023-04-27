@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_filters %}
 {% block content %}
+
+
   <div id="single">
     <div class="row d-flex" style="background-color: #fff;">
       <div class="row col-md-9 mt-2 contain">
@@ -86,11 +89,7 @@
             </h6>
             <div class="rating">
               <div class="star-rating">
-                <span style="font-size: 16px;" class="star">&#9733;</span>
-                <span style="font-size: 16px;" class="star">&#9733;</span>
-                <span style="font-size: 16px;" class="star">&#9733;</span>
-                <span style="font-size: 16px;" class="star">&#9733;</span>
-                <span style="font-size: 16px;" class="star">&#9733;</span>
+                <span style="font-size: 16px;color: rgb(236, 202, 5);" class="star">{{stars}}</span>
               </div>
               <h6 class="rate" style="margin-top: 5px;font-size: 12px;">(No ratings available)</h6>
             </div>
@@ -130,7 +129,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 seller_infrmation">
+      <div class="col-md-3 sel">
         <div class="seller d-flex mb-4" style="width: 100px;">
           <img src="{% static 'images/seller.png' %}"
                class="sell"
@@ -184,8 +183,10 @@
           </div>
         </div>
       </div>
+
     </div>
-    <div class="product_detail">
+    <div style="width: 100%;height: 20px;background-color: #e5e0e0;z-index: -10;"></div>
+    <div class="product_detail" style="margin-top: 8px;">
       <ul class="tabs-choose">
         <li @click="activeTab = '1'"
             :class="[activeTab === '1' ? 'active' : '' ]">
@@ -198,15 +199,276 @@
       </ul>
       <div class="tabs-content">
         <div class="content-one" v-if="activeTab==='1' ">
-          Content One
+        
+          <div class="over d-md-flex bg-light">
+
+          <div class="d-flex allrate col-xl-8 col-lg-7  col-md-7 col-sm-12">
+
+          <div class="mt-4 Grate col-xl-6 col-lg-12 col-md-12 col-sm-12">
+       <div class="d-flex justify-content-center">
+        <img  src="{% static 'images/starR.png' %}" class="ml-2" style="width: 40px;height: 40px;margin-top: 8px;" alt="photo">
+
+          <h1 class="overall text-dark ml-2 mt-1  justify-content-center" style="font-weight: bold;font-size: 38px;white-space: nowrap;">Overall Rating</h1>
+          <img  src="{% static 'images/starR.png' %}" class="ml-3" style="width: 40px;height: 40px;margin-top: 11px;" alt="photo">
         </div>
+          <div class="rate d-flex justify-content-center mt-2">
+           
+          <h1 style="color: rgb(26, 166, 26);font-size: 50px;">{{average_rate}}</h1>
+
+          <div class="star-rating mt-2 ml-3">
+            <span style="font-size: 28px;color:#ecca05;" class="star">{{stars}}</span>
+
+        </div>
+        <div class="d-block">
+          <p class="mt-4 numRate">{{num_items}} Reviews</p>
+        </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="check-circle-fill" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </symbol>
+            <symbol id="info-fill" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </symbol>
+            <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </symbol>
+          
+          </svg>
+          <div style="width: 400px;height: 50px;margin-left: 0;align-items: center;" class="d-flex alert alert-primary" role="alert">
+            <svg style="height: 20px; width:20px;" class="bi flex-shrink-0 me-2" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+            <div>
+              <h6 style="margin-top: 8px;word-break: normal;">There are {{num_items}} customer reviews and 12 customer ratings.</h6>
+            </div>
+          </div>
+        </div>
+    
+        
+       </div>
+       <!-- itate -->
+          <div class="Irate col-xl-6" style="margin-top: 48px;">
+
+          <div class="d-flex">
+            <label style="font-size: 15px;">5</label>
+            <span style="font-size: 14px;margin: 0 2px;" class="star text-success">&#9733;</span>
+           
+            <div class="progress m-2" style="height: 8px;width: 76%;" role="progressbar" aria-label="Basic example" :aria-valuenow="Rate5" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar bg-success" :style="{ width: Rate5*1.4 + '%' }"></div>
+            </div>
+
+          <label style="font-size: 14px;">( {{rate5}} )</label>
+          </div>
+          <div class="d-flex">
+            <label style="font-size: 15px;">4</label>
+            <span style="font-size: 14px;margin: 0 2px;color: #3ec63e;" class="star">&#9733;</span>
+            <div class="progress m-2" style="height: 8px;width: 76%;" role="progressbar" aria-label="Basic example" :aria-valuenow="Rate5" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" style="background: #3ec63e;" :style="{ width: Rate4*1.4 + '%' }"></div>
+            </div>
+           <label style="font-size: 14px;">( {{rate4}} )</label>
+          </div>
+          <div class="d-flex">
+            <label style="font-size: 15px;">3</label>
+            <span style="font-size: 14px;margin: 0 2px;color: #c69f11;" class="star">&#9733;</span>
+            <div class="progress m-2" style="height: 8px;width: 76%;" role="progressbar" aria-label="Basic example" :aria-valuenow="Rate5" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" style="background: #c69f11;" :style="{ width: Rate3*1.4 + '%' }"></div>
+            </div>
+           <label style="font-size: 14px;">( {{rate3}} )</label>
+          </div>
+          <div class="d-flex">
+            <label style="font-size: 15px;">2</label>
+            <span style="font-size: 14px;margin: 0 2px;" class="star text-warning">&#9733;</span>
+            <div class="progress m-2" style="height: 8px;width: 76%;" role="progressbar" aria-label="Basic example" :aria-valuenow="Rate5" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar bg-warning" :style="{ width: Rate2*1.4 + '%' }"></div>
+            </div>
+           <label style="font-size: 14px;">( {{rate2}} )</label>
+          </div>
+          <div class="d-flex">
+            <label style="font-size: 15px;">1</label>
+            <span style="font-size: 14px;margin: 0 2px;" class="star text-danger">&#9733;</span>
+            <div class="progress m-2" style="height: 8px;width: 76%;" role="progressbar" aria-label="Basic example" :aria-valuenow="Rate5" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar bg-danger" :style="{ width: Rate1*1.4 + '%' }"></div>
+            </div>
+           <label style="font-size: 14px;">( {{rate1}} )</label>
+          </div>
+
+          </div>
+
+</div>
+       
+
+<div class="Hrate col-sm-12 col-md-5 col-lg-5 col-xl-4">
+  <div>
+<p style="font-weight: bold;">How do I review this product?</p>
+  <p style="font-size: 13px;">If you recently purchased this product, you can go to your Orders page and click on the Submit Review button
+  </p>
+</div>
+
+<div class="d-block">
+ <p style="font-weight: bold;">Where do the reviews come from?</p>
+  <p style="font-size: 13px;">Our reviews come from customers who purchased the product and submitted a review
+  </p>
+</div>
+
+</div>
+
+
+        </div>
+
+
+        <hr>
+<div class="mt-4 d-flex justify-content-center">
+    <img  src="{% static 'images/re.webp' %}" class="mr-3" style="width: 40px;height: 40px;margin-top: 11px;" alt="photo">
+    <h1 style="font-size: 38px;font-weight: bold;white-space: nowrap;">Reviews</h1>
+    <img  src="{% static 'images/re.webp' %}" class="ml-3" style="width: 40px;height: 40px;margin-top: 11px;" alt="photo">
+
+    </div>
+      <div  style="display: grid;grid-template-rows: repeat(2, 1fr);grid-column-gap: 20px;">
+
+ <div class="swiper mySwiper">
+    <div class="swiper-wrapper mt-5">
+       {% for x in user_review %}
+      <div class="swiper-slide">
+      
+        <div class="client_img mt-3"><img src="{% static 'images/client-img.png' %}" alt="photo"></div>
+
+        <h3 class="name_text mt-3" style="margin-left: 66px;">{{x.name}}</h3>
+   
+      <div class="star-rating">
+        <span style="font-size: 20px;margin: 2px 2px;color: rgb(236, 202, 5);margin-left: 126px;" class="star">{{x.rate| stars }}</span>
+      </div>
+      <p style="color: #000;">{{x.review}}</p>
+
+      <p class="date-review mt-2 ml-4">{{ x.formatted_date }}</p>
+  
+     
+
+     
+
+    </div>
+    {% endfor %} 
+  </div>
+
+          <!-- {% for x in user_review %}
+          <div class="ConReview">
+
+            <div class="mt-5 d-flex justify-content-center">
+
+        <div class="client_main" style="width: 80%;padding-bottom: 32px;">
+          <div class="client_left">
+             <div class="client_img"><img src="{% static 'images/client-img.png' %}" alt="photo"></div>
+          </div>
+          <div class="client_right" style="padding-top: 34px;">
+             <h3 class="name_text">{{x.name}}</h3>
+         
+             <div class="star-rating">
+              <span style="font-size: 14px;margin: 2px 2px;color: rgb(236, 202, 5);" class="star">{{x.rate| stars }}</span>
+            </div>
+            <p class="ml-4 text-dark" style="font-size: 12px;position: absolute;transform: translate(120%,-178%);">{{ x.formatted_date }}</p>
+
+           
+ 
+             <p class="dolor_text mt-3">{{x.review}}</p>
+          </div>
+       </div>
+      </div>
+    </div>
+       
+        {% endfor %} -->
+
+
+
+ {% if user_review.has_other_pages %}
+
+ <div class="d-flex mb-4 mt-5" style="justify-content: center;">
+
+ 
+   {% if user_review.has_previous %}
+   <a href="?page={{user_review.previous_page_number}}">
+   <button class="previous_button">
+    <svg class="arrow mr-4" style="rotate: 180deg;" width="14" height="14" viewBox="0 0 20 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.578 17.4999L2.44953 0.418773C1.88833 -0.140542 0.979743 -0.139601 0.419488 0.421666C-0.140333 0.982862 -0.138887 1.89196 0.422381 2.45171L16.5313 18.5162L0.421802 34.5806C-0.139393 35.1404 -0.14084 36.0489 0.418909 36.6102C0.69976 36.8916 1.06769 37.0322 1.43563 37.0322C1.80262 37.0322 2.16911 36.8925 2.44946 36.6131L19.578 19.5324C19.8483 19.2635 20 18.8975 20 18.5162C20 18.1349 19.8479 17.7693 19.578 17.4999Z" fill="black"></path></svg>
+    Previous Page
+  </button>
+  </a>
+
+   {% else %}
+   <button disabled class="previous_button">
+    <svg class="arrow mr-2" id="arrow" style="rotate: 180deg;" width="14" height="14" viewBox="0 0 20 38" xmlns="http://www.w3.org/2000/svg">
+      <path  d="M19.578 17.4999L2.44953 0.418773C1.88833 -0.140542 0.979743 -0.139601 0.419488 0.421666C-0.140333 0.982862 -0.138887 1.89196 0.422381 2.45171L16.5313 18.5162L0.421802 34.5806C-0.139393 35.1404 -0.14084 36.0489 0.418909 36.6102C0.69976 36.8916 1.06769 37.0322 1.43563 37.0322C1.80262 37.0322 2.16911 36.8925 2.44946 36.6131L19.578 19.5324C19.8483 19.2635 20 18.8975 20 18.5162C20 18.1349 19.8479 17.7693 19.578 17.4999Z" />
+    </svg>
+
+    Previous Page
+  </button>
+
+   {% endif %}
+
+
+   {% if user_review.has_next %}
+   <a href="?page={{user_review.next_page_number}}" >
+   <button class="next_button" style="width: 165px; height: 50px;margin-left: 20px;font-weight: bold;border-radius: 4px;display: flex;justify-content: center;align-items: center;padding-left: 6px;font-family: sans-serif;padding-top: 2px;">
+    Next Page
+    <svg class="arrow ml-2" width="14" height="14" viewBox="0 0 20 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.578 17.4999L2.44953 0.418773C1.88833 -0.140542 0.979743 -0.139601 0.419488 0.421666C-0.140333 0.982862 -0.138887 1.89196 0.422381 2.45171L16.5313 18.5162L0.421802 34.5806C-0.139393 35.1404 -0.14084 36.0489 0.418909 36.6102C0.69976 36.8916 1.06769 37.0322 1.43563 37.0322C1.80262 37.0322 2.16911 36.8925 2.44946 36.6131L19.578 19.5324C19.8483 19.2635 20 18.8975 20 18.5162C20 18.1349 19.8479 17.7693 19.578 17.4999Z" fill="black"></path></svg>
+  </button>
+</a>
+
+   {% else %}
+  
+   <button disabled class="next_button disabled" style="width: 165px; height: 50px;margin-left: 20px;font-weight: bold;border-radius: 4px;display: flex;justify-content: center;align-items: center;padding-left: 6px;font-family: sans-serif;padding-top: 2px;">
+    Next Page
+    <svg class="arrow ml-2" id="arrow" width="14" height="14" viewBox="0 0 20 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.578 17.4999L2.44953 0.418773C1.88833 -0.140542 0.979743 -0.139601 0.419488 0.421666C-0.140333 0.982862 -0.138887 1.89196 0.422381 2.45171L16.5313 18.5162L0.421802 34.5806C-0.139393 35.1404 -0.14084 36.0489 0.418909 36.6102C0.69976 36.8916 1.06769 37.0322 1.43563 37.0322C1.80262 37.0322 2.16911 36.8925 2.44946 36.6131L19.578 19.5324C19.8483 19.2635 20 18.8975 20 18.5162C20 18.1349 19.8479 17.7693 19.578 17.4999Z" fill="black"></path></svg>
+  </button>
+
+
+   {% endif %}
+
+</div>
+{% endif %}
+</div>
+   
+
+        </div>
+ 
+   
+ 
+ 
+
+
         <div class="content-one" v-if="activeTab==='2' ">
           Content Two
         </div>
       </div>
     </div>
+
+
+
+
+    <!-- <div  style="width: 100%;height: 650px;;background-color: #e5e0e0;z-index: -10;padding-top: 18px;">
+    <div style="background-color:#e5e0e0 ;height: 240px;">
+      <h1 style="font-weight: bold;">How about these?</h1> -->
+
+
+
+
+
+</div>
+  </div> 
+
+
   </div>
+  
+
+
   <script>
+
   var count = JSON.parse('{{ product_detail.quantity |safe }}');
-  </script>
-{% endblock %}
+
+  var rate5 = JSON.parse('{{ rate5 |safe }}');
+  var rate4 = JSON.parse('{{ rate4 |safe }}');
+  var rate3 = JSON.parse('{{ rate3 |safe }}');
+  var rate2 = JSON.parse('{{ rate2 |safe }}');
+  var rate1 = JSON.parse('{{ rate1 |safe }}');
+</script>
+
+
+
+{% endblock content%}

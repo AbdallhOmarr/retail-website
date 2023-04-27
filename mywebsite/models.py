@@ -4,6 +4,18 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import Group,Permission
 from django.utils.text import slugify
+from django.utils import timezone
+
+
+# make star shape
+from django import template
+
+register = template.Library()
+
+@register.filter(name='stars')
+def stars(value):
+    return '⭐' * value
+
 
 
 class Category(models.Model):
@@ -63,6 +75,20 @@ class Product(models.Model):
         super(Product,self).save(*args,**kwargs)
 
 
+
+
+class Review(models.Model):
+    name= models.CharField(max_length=20,default="Mohamed Alashkar")
+    rate= models.DecimalField(max_digits=8,decimal_places=1,default=0)
+    review = models.CharField(max_length=500)
+    RDate = models.DateField(default=timezone.now)
+
+    def formatted_date(self):
+        return self.RDate.strftime("%Y-%m-%d")
+
+
+
+    
     
 
 class Order(models.Model):
