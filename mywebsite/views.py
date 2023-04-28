@@ -77,7 +77,7 @@ def product_detail(request , slug):
     rate2 = Review.objects.filter(rate = 2.0).count()  
     rate1 = Review.objects.filter(rate = 1.0).count()  
 
-    paginator = Paginator(user_review, 5) # Show 25 contacts per page.
+    paginator = Paginator(user_review, 2) # Show 25 contacts per page.
     page= request.GET.get('page')
     user_review  = paginator.get_page(page)   
     context = {

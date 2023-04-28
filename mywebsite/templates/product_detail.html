@@ -325,7 +325,7 @@
     </div>
       <div  style="display: grid;grid-template-rows: repeat(2, 1fr);grid-column-gap: 20px;">
 
- <div class="swiper mySwiper">
+ <!-- <div class="swiper mySwiper">
     <div class="swiper-wrapper mt-5">
        {% for x in user_review %}
       <div class="swiper-slide">
@@ -347,9 +347,9 @@
 
     </div>
     {% endfor %} 
-  </div>
+  </div> -->
 
-          <!-- {% for x in user_review %}
+          {% for x in user_review %}
           <div class="ConReview">
 
             <div class="mt-5 d-flex justify-content-center">
@@ -374,7 +374,7 @@
       </div>
     </div>
        
-        {% endfor %} -->
+        {% endfor %}
 
 
 
@@ -442,19 +442,175 @@
 
 
 
-    <!-- <div  style="width: 100%;height: 650px;;background-color: #e5e0e0;z-index: -10;padding-top: 18px;">
-    <div style="background-color:#e5e0e0 ;height: 240px;">
-      <h1 style="font-weight: bold;">How about these?</h1> -->
+    <div  style="width: 100%;background-color: #e5e0e0;z-index: -10;padding-top: 18px;height: fit-content;">
+      <h1 style="font-weight: bold;margin-top:40px;margin-left: 50px;">How about these?</h1>
+   
+      <div class="mySwiperslide" style="width: 920px;">
+        <div class="swiper-wrapper"style="width: 1000px;" >
+          <div class="swiper-slide">
+            <div class="product_box">
+              <h4 class="bursh_text">Beauty Bursh</h4>
+              <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
+              <img src="{% static 'images/img-3.png' %}" class="image_1">
+              <div class="btn_main">
+                 <div class="buy_bt">
+                    <ul>
+                       <li class="active"><a href="#">Buy Now</a></li>
+                       <li><a href="#">Buy Now</a></li>
+                    </ul>
+                 </div>
+                 <h3 class="price_text">Price $30</h3>
+              </div>
+           </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="product_box">
+              <h4 class="bursh_text">Beauty Bursh</h4>
+              <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
+              <img src="{% static 'images/img-3.png' %}" class="image_1">
+              <div class="btn_main">
+                 <div class="buy_bt">
+                    <ul>
+                       <li class="active"><a href="#">Buy Now</a></li>
+                       <li><a href="#">Buy Now</a></li>
+                    </ul>
+                 </div>
+                 <h3 class="price_text">Price $30</h3>
+              </div>
+           </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="product_box">
+              <h4 class="bursh_text">Beauty Bursh</h4>
+              <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
+              <img src="{% static 'images/img-3.png' %}" class="image_1">
+              <div class="btn_main">
+                 <div class="buy_bt">
+                    <ul>
+                       <li class="active"><a href="#">Buy Now</a></li>
+                       <li><a href="#">Buy Now</a></li>
+                    </ul>
+                 </div>
+                 <h3 class="price_text">Price $30</h3>
+              </div>
+           </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="product_box">
+              <h4 class="bursh_text">Beauty Bursh</h4>
+              <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
+              <img src="{% static 'images/img-3.png' %}" class="image_1">
+              <div class="btn_main">
+                 <div class="buy_bt">
+                    <ul>
+                       <li class="active"><a href="#">Buy Now</a></li>
+                       <li><a href="#">Buy Now</a></li>
+                    </ul>
+                 </div>
+                 <h3 class="price_text">Price $30</h3>
+              </div>
+           </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="product_box">
+              <h4 class="bursh_text">Beauty Bursh</h4>
+              <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
+              <img src="{% static 'images/img-3.png' %}" class="image_1">
+              <div class="btn_main">
+                 <div class="buy_bt">
+                    <ul>
+                       <li class="active"><a href="#">Buy Now</a></li>
+                       <li><a href="#">Buy Now</a></li>
+                    </ul>
+                 </div>
+                 <h3 class="price_text">Price $30</h3>
+              </div>
+           </div>
+          </div>
 
+      </div>
+    </div>
+    <div  style="width: 100%;background-color: #e5e0e0;z-index: -10;padding-top: 18px;height: 100px;">
+    </div>
+     
+  </div>
 
-
-
-
-</div>
+  <div class="footer_section layout_padding">
+    <div class="container">
+       <div class="footer_logo"><a href="{% url 'index' %}"><img src="{% static 'images/footer-logo.png' %}"></a>
+       </div>
+       <div class="contact_section_2">
+          <div class="row">
+             <div class="col-sm-4">
+                <h3 class="address_text">Contact Us</h3>
+                <div class="address_bt">
+                   <ul>
+                      <li>
+                         <a href="#">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left10">Address
+                               :
+                               Loram Ipusm</span>
+                         </a>
+                      </li>
+                      <li>
+                         <a href="#">
+                            <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left10">Call : +01
+                               1234567890</span>
+                         </a>
+                      </li>
+                      <li>
+                         <a href="#">
+                            <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left10">Email :
+                               demo@gmail.com</span>
+                         </a>
+                      </li>
+                   </ul>
+                </div>
+             </div>
+             <div class="col-sm-4">
+                <div class="footer_logo_1"><a href="{% url 'index' %}"><img
+                         src="{% static 'images/footer-logo.png' %}"></a></div>
+                <p class="dummy_text">commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                   esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p>
+             </div>
+             <div class="col-sm-4">
+                <!-- <div class="main">
+                   <h3 class="address_text">Best Products</h3>
+                   <p class="ipsum_text">dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p>
+                </div> -->
+             </div>
+          </div>
+       </div>
+       <div class="social_icon">
+          <ul>
+             <li>
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+             </li>
+             <li>
+                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+             </li>
+             <li>
+                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+             </li>
+             <li>
+                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+             </li>
+          </ul>
+       </div>
+    </div>
+   
+ </div>
+ <!-- footer section end -->
+ <!-- copyright section start -->
+ <div class="copyright_section" style="padding-bottom: 40px;">
+  <div class="container">
+     <p class="copyright_text">2023 All Rights Reserved. Design by Abdalla Omar
+  </div>
+ </div>
   </div> 
 
 
-  </div>
+
   
 
 

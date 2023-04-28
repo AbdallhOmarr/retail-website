@@ -478,9 +478,9 @@ body {
 }
 
 .swiper-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+display: flex;
+justify-content: center;
+align-items: center;
   border-radius: 18px;
   font-size: 22px;
   font-weight: bold;
@@ -534,6 +534,35 @@ margin-bottom: 10px;
 .swiper-slide:nth-child(10n) {
   background-color: rgb(54, 94, 77);
 }
+
+.mySwiperslide{
+  margin-left: 40px;
+}
+.mySwiperslide .swiperslide {
+  height: 100%;
+}
+
+.mySwiperslide .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background-color: #e5e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mySwiperslide .swiper-slide img {
+  display: block;
+  width: 540px;
+  height: 220px;
+  object-fit: cover;
+}
+
+.mySwiperslide .swiper-slide {
+  width:300px ;
+  color: red;
+}
+
 
     @media screen and (max-width:700px){
       .count{
