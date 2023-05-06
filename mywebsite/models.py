@@ -54,7 +54,7 @@ class Product(models.Model):
     quantity = models.DecimalField(max_digits=5, decimal_places=0,default=1)
 
     MainImage = models.ImageField(upload_to='product_images/')
-    image2 = models.ImageField(upload_to='product_images/',null=True,blank=True, verbose_name=("Image2"))
+    image2 = models.ImageField(upload_to='product_images/', verbose_name=("Image2"),null=True)
     image3 = models.ImageField(upload_to='product_images/',null=True,blank=True, verbose_name=("Image3"))
     image4 = models.ImageField(upload_to='product_images/',null=True,blank=True, verbose_name=("Image4"))
     

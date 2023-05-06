@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load custom_filters %}
 {% load static %}
+
+<div id="products">
+
 <!-- banner section start -->
 <div class="banner_section layout_padding">
    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
          <div class="carousel-item active">
             <div class="container">
-               <div class="row">
+               <div class="row  wow fadeInDown" data-wow-offset="10" data-wow-duration="3s">
                   <div class="col-sm-6">
                      <h1 class="banner_taital">Beauty <br>Kit</h1>
                      <p class="banner_text">Ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
@@ -72,8 +76,9 @@
 
 
 <!-- product section start -->
+
 <div class="product_section layout_padding">
-   <div class="container ">
+   <div>
       <div class="row d-flex my-2 justify-content-center">
          <div class="col-sm-12">
             <h1 class="product_taital">Our Products</h1>
@@ -88,217 +93,185 @@
                </form>
          </div>
       </div>
-      <div class="product_section_2 layout_padding">
-         <div class="row">
-            <div class="col-lg-3 col-sm-6">
-               <div class="product_box">
-                  <h4 class="bursh_text">Beauty Bursh</h4>
-                  <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-                  <img src="{% static 'images/img-3.png' %}" class="image_1">
-                  <div class="btn_main">
-                     <div class="buy_bt">
-                        <ul>
-                           <li class="active"><a href="#">Buy Now</a></li>
-                           <li><a href="#">Buy Now</a></li>
-                        </ul>
-                     </div>
-                     <h3 class="price_text">Price $30</h3>
-                  </div>
-               </div>
+
+
+   <!-- <div class="col-3">
+      <div class="sidebar  has-scrollbar ml-4" style="width: 84%;" data-mobile-menu>
+      <div class="sidebar-category">
+         <div class="sidebar-top">
+            <h2 class="sidebar-title">Category</h2>
+            <button class="sidebar-close-btn" data-mobile-menu-close-btn>
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </div>
+        
+          
+          <div id="my-container">
+            <button class="bg-light mix" data-filter="all">All</button>
+            {% for product in product_list %}
+            <button class="bg-light mix" data-category="{{ product.category }}">{{product.category }}</button>
+            {% endfor %} 
+   
+          </div>
+
+        </div>
+      </div>
+      </div> -->
+      <div class="product-main">
+
+        <div class="product-grid" style="margin:50px 100px;">
+
+          {% for product in product_list %}
+          <section class="wow fadeInUpBig" data-wow-offset="10" data-wow-duration="1.5s">
+          <div class="showcase">
+
+            <div class="showcase-banner">
+
+              {% if product.MainImage %}
+              <img src="{{ product.MainImage.url }}" style="cursor:zoom-in;" alt="Mens Winter Leathers Jackets" width="300" class="product-img default">
+              {% endif %}
+              {% if product.image2 %}
+              <img src="{{ product.image2.url }}" style="cursor:grab;" alt="Mens Winter Leathers Jackets" width="300" class="product-img hover">
+              {% endif %}
+
+              {% if product.bestseller %}
+              <p class="showcase-badge angle black">sale</p>
+              {% endif %}
+              {% if product.new %}
+              <p class="showcase-badge angle pink">new</p>
+              {% endif %}
+
+              <div class="showcase-actions">
+
+                <button class="btn-action">
+                  <ion-icon name="heart-outline"></ion-icon>
+                </button>
+
+                <button class="btn-action">
+                  <ion-icon name="eye-outline"></ion-icon>
+                </button>
+
+                <button class="btn-action">
+                  <ion-icon name="repeat-outline"></ion-icon>
+                </button>
+
+                <button class="btn-action">
+                  <ion-icon name="bag-add-outline"></ion-icon>
+                </button>
+
+              </div>
+
             </div>
-            <div class="col-lg-3 col-sm-6">
-               <div class="product_box">
-                  <h4 class="bursh_text">Beauty Bursh</h4>
-                  <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-                  <img src="{% static 'images/img-3.png' %}" class="image_1">
-                  <div class="btn_main">
-                     <div class="buy_bt">
-                        <ul>
-                           <li class="active"><a href="#">Buy Now</a></li>
-                           <li><a href="#">Buy Now</a></li>
-                        </ul>
-                     </div>
-                     <h3 class="price_text">Price $30</h3>
-                  </div>
-               </div>
+
+            <div class="showcase-content">
+
+              <a href="#" class="showcase-category">{{product.subcategory}}</a>
+
+              <a href="#">
+                <h3 style="font-size: 18px;font-weight: bold;">{{product.name}}</h3>
+              </a>
+              <div style="white-space: nowrap;">
+                <span style="font-size: 15px;color: rgb(37, 189, 37);">{{average_rate | stars}}</span>
+             </div>
+
+              {% if product.discountprice > 0 %}
+              <h6 style="margin-left: 4px;font-size: 18px;color: #1b1919;font-weight: bold;">${{ product.discountprice }}</h6>
+              <div class="d-flex">
+                <h6>
+                  <del style="margin-left: 4px;font-size: 14px;">${{ product.price }} </del>
+                </h6>
+                <h6 style="margin-left: 8px;font-size: 12px;background: #30a730;padding: 0 4px;color: #fff;
+                border-radius: 4px;font-weight: bold;padding-top: 1px;height: 18px;margin-top: 1px;">50% off</h6>
+              </div>
+              {% else %}
+                <h6 style="margin-left: 4px;font-size: 18px;font-weight: bold;">${{ product.price }}</h6>
+                <div style="height: 36px;"></div>
+              {% endif %}
+
             </div>
-            <div class="col-lg-3 col-sm-6">
-               <div class="product_box">
-                  <h4 class="bursh_text">Beauty Bursh</h4>
-                  <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-                  <img src="{% static 'images/img-3.png' %}" class="image_1">
-                  <div class="btn_main">
-                     <div class="buy_bt">
-                        <ul>
-                           <li class="active"><a href="#">Buy Now</a></li>
-                           <li><a href="#">Buy Now</a></li>
-                        </ul>
-                     </div>
-                     <h3 class="price_text">Price $30</h3>
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-               <div class="product_box">
-                  <h4 class="bursh_text">Beauty Bursh</h4>
-                  <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-                  <img src="{% static 'images/img-3.png' %}" class="image_1">
-                  <div class="btn_main">
-                     <div class="buy_bt">
-                        <ul>
-                           <li class="active"><a href="#">Buy Now</a></li>
-                           <li><a href="#">Buy Now</a></li>
-                        </ul>
-                     </div>
-                     <h3 class="price_text">Price $30</h3>
-                  </div>
-               </div>
-            </div>
+
+          </div>
+        </section>
+          {% endfor %} 
          </div>
 
-         <div class="row">
-            <div class="col-lg-3 col-sm-6">
-               <div class="product_box">
-                  <h4 class="bursh_text">Beauty Bursh</h4>
-                  <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-                  <img src="{% static 'images/img-3.png' %}" class="image_1">
-                  <div class="btn_main">
-                     <div class="buy_bt">
-                        <ul>
-                           <li class="active"><a href="#">Buy Now</a></li>
-                           <li><a href="#">Buy Now</a></li>
-                        </ul>
-                     </div>
-                     <h3 class="price_text">Price $30</h3>
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-               <div class="product_box">
-                  <h4 class="bursh_text">Beauty Bursh</h4>
-                  <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-                  <img src="{% static 'images/img-3.png' %}" class="image_1">
-                  <div class="btn_main">
-                     <div class="buy_bt">
-                        <ul>
-                           <li class="active"><a href="#">Buy Now</a></li>
-                           <li><a href="#">Buy Now</a></li>
-                        </ul>
-                     </div>
-                     <h3 class="price_text">Price $30</h3>
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-               <div class="product_box">
-                  <h4 class="bursh_text">Beauty Bursh</h4>
-                  <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-                  <img src="{% static 'images/img-3.png' %}" class="image_1">
-                  <div class="btn_main">
-                     <div class="buy_bt">
-                        <ul>
-                           <li class="active"><a href="#">Buy Now</a></li>
-                           <li><a href="#">Buy Now</a></li>
-                        </ul>
-                     </div>
-                     <h3 class="price_text">Price $30</h3>
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-               <div class="product_box">
-                  <h4 class="bursh_text">Beauty Bursh</h4>
-                  <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-                  <img src="{% static 'images/img-3.png' %}" class="image_1">
-                  <div class="btn_main">
-                     <div class="buy_bt">
-                        <ul>
-                           <li class="active"><a href="#">Buy Now</a></li>
-                           <li><a href="#">Buy Now</a></li>
-                        </ul>
-                     </div>
-                     <h3 class="price_text">Price $30</h3>
-                  </div>
-               </div>
-            </div>
          </div>
+         
+      </div> 
+
+
+
+
+<!--       
+<div class="d-flex">
+     <div class="col-3">
+     sss
+   </div>
+
+
+      <div class="product_section_2 layout_padding co--9">
          <div class="row">
-            <div class="col-lg-3 col-sm-6">
-               <div class="product_box">
-                  <h4 class="bursh_text">Beauty Bursh</h4>
-                  <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-                  <img src="{% static 'images/img-3.png' %}" class="image_1">
-                  <div class="btn_main">
-                     <div class="buy_bt">
-                        <ul>
-                           <li class="active"><a href="#">Buy Now</a></li>
-                           <li><a href="#">Buy Now</a></li>
-                        </ul>
+            {% for product in product_list %}
+            <div class="col-md-4">
+               <div class="box-product" style="width: 280px;margin-left: 20px;">
+                  <div style="background-color: #eee;border-radius: 4px;height: 300px;display: flex;align-items: center;">
+                  {% if product.MainImage %}
+            <img src="{{product.MainImage.url}}" class="image_1">
+            {% else %}
+            <img  src="{% static 'site_static/img/default.png' %}" class="image_1">
+            {% endif %}
+         </div>
+            <h4 style="font-weight: bold;font-size: 18px;margin-left: 4px;" class="mt-3">{{product.name}}</h4>
+           
+               {% if product.discountprice > 0 %}
+               <h6 style="margin-left: 4px;font-size: 24px;color: rgb(27, 25, 25);">${{ product.discountprice }}</h6>
+               <div class="d-flex">
+                 <h6>
+                   <del style="margin-left: 4px;font-size: 16px;">${{ product.price }} </del>
+                 </h6>
+                 
+                 <h6 style="margin-left: 8px;font-size: 14px;color: #30a730;margin-top: 1px;">50% off</h6>
+               </div>
+               {% else %}
+                 <h6 style="margin-left: 4px;font-size: 22px;">${{ product.price }}</h6>
+                 <div style="height: 36px;"></div>
+               {% endif %}
+                   <div class="d-flex justify-content-between">
+                     <div>
+                        {% if product.quantity > 10 %}
+                        <span style="background-color: #c78917;color: #000;margin-left: 4px;padding: 2px 6px;">{{product.quantity}} items left</span>
+                        {% else %}
+                        <span style="background-color: #c78917;color: #000;margin-left: 4px;padding: 2px 6px;">only {{product.quantity}} items left !</span>
+                        {% endif %}
                      </div>
-                     <h3 class="price_text">Price $30</h3>
-                  </div>
+                  <div style="white-space: nowrap;">
+                  <span style="border-radius: 30px;background-color: #57c72f;color: #fff;padding: 1px 4px;font-size: 15px;">{{average_rate}}<span style="font-size: 14px;">&#9733;</span></span>
+                 <span style="font-size: 15px;margin-left: 4px;">({{num_reviews}})</span>
+               </div>
+
+               </div>
                </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-               <div class="product_box">
-                  <h4 class="bursh_text">Beauty Bursh</h4>
-                  <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-                  <img src="{% static 'images/img-3.png' %}" class="image_1">
-                  <div class="btn_main">
-                     <div class="buy_bt">
-                        <ul>
-                           <li class="active"><a href="#">Buy Now</a></li>
-                           <li><a href="#">Buy Now</a></li>
-                        </ul>
-                     </div>
-                     <h3 class="price_text">Price $30</h3>
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-               <div class="product_box">
-                  <h4 class="bursh_text">Beauty Bursh</h4>
-                  <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-                  <img src="{% static 'images/img-3.png' %}" class="image_1">
-                  <div class="btn_main">
-                     <div class="buy_bt">
-                        <ul>
-                           <li class="active"><a href="#">Buy Now</a></li>
-                           <li><a href="#">Buy Now</a></li>
-                        </ul>
-                     </div>
-                     <h3 class="price_text">Price $30</h3>
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-               <div class="product_box">
-                  <h4 class="bursh_text">Beauty Bursh</h4>
-                  <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-                  <img src="{% static 'images/img-3.png' %}" class="image_1">
-                  <div class="btn_main">
-                     <div class="buy_bt">
-                        <ul>
-                           <li class="active"><a href="#">Buy Now</a></li>
-                           <li><a href="#">Buy Now</a></li>
-                        </ul>
-                     </div>
-                     <h3 class="price_text">Price $30</h3>
-                  </div>
-               </div>
-            </div>
-            <div class="seemore_bt"><a href="#">See More</a></div>
+            {% endfor %}
+
+         
+ 
+            
          </div>
 
       </div>
    </div>
+   </div>
+</div>-->
+
+
    <!-- product section end -->
    <!-- about section start -->
    <div class="about_section layout_padding">
       <div class="container">
          <div class="about_section_main">
             <div class="row">
-               <div class="col-md-6">
+               <div class="col-md-6 wow fadeInUp" data-wow-offset="10" data-wow-duration="3s" >
                   <div class="about_taital_main">
                      <h1 class="about_taital">About Our beauty sotore</h1>
                      <p class="about_text">labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -310,7 +283,7 @@
                      <div class="readmore_bt"><a href="#">Read More</a></div>
                   </div>
                </div>
-               <div class="col-md-6">
+               <div class="col-md-6 wow slideInRight" data-wow-offset="10" data-wow-duration="1.4s"  >
                   <div><img src="{% static 'images/about-img.png' %}" class="image_3"></div>
                </div>
             </div>
@@ -322,12 +295,12 @@
    <!-- customer section start -->
    <div class="customer_section layout_padding">
       <div class="container">
-         <div class="row">
-            <div class="col-sm-12">
+         <div class="row" >
+            <div class="col-sm-12" >
                <h1 class="customer_taital">What says customers</h1>
             </div>
          </div>
-         <div id="main_slider" class="carousel slide" data-ride="carousel">
+         <div id="main_slider" class="carousel slide  wow slideInLeft"  data-wow-offset="10" data-wow-duration="1.4s" data-ride="carousel">
             <div class="carousel-inner">
                <div class="carousel-item active">
                   <div class="client_section_2">
@@ -390,7 +363,7 @@
    <!-- contact section start -->
    <div class="contact_section layout_padding">
       <div class="container">
-         <div class="row">
+         <div class="row  wow flipInX " data-wow-offset="10" data-wow-duration="2s">
             <div class="col-md-6">
                <h1 class="contact_taital">Get In Touch</h1>
                <p class="contact_text">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -416,7 +389,7 @@
    <!-- contact section end -->
    <!-- footer section start -->
    <div class="footer_section layout_padding">
-      <div class="container">
+      <div class="container wow fadeInUpBig" data-wow-offset="10" data-wow-duration="1.5s">
          <div class="footer_logo"><a href="{% url 'index' %}"><img src="{% static 'images/footer-logo.png' %}"></a>
          </div>
          <div class="contact_section_2">
@@ -489,4 +462,16 @@
 
    
    <!-- copyright section end -->
+
+
+</div>
+
+{% for product in product_list %}
+<script>
+
+   var  discountprice= JSON.parse('{{ product.discountprice|safe }}');
+   var  price= JSON.parse('{{ product.price|safe }}');
+ 
+ </script>
+ {% endfor %} 
    {% endblock content %}
