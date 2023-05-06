@@ -1,11 +1,11 @@
 
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 import uuid
 from django.contrib import messages
-from .models import Product, Review
+from .models import Product, Review, Category,SubCategory
 from django.core.paginator import Paginator
 from django.db.models import Avg
 
@@ -15,13 +15,40 @@ def vueapp(request):
     return render(request,"vueapp.html")
     
 def home(request):
-    resp = render(request, "index.html")
+    product_list = Product.objects.all()
+    average_value = Review.objects.aggregate(Avg('rate'))
+    average_rate = round(float(average_value['rate__avg']), 1)
+    num_reviews = Review.objects.count()
+    categories = Category.objects.all()
+
+
+
+
+    # for product in product_list:
+    #     if product.discountprice:
+    #         discount_percent = round((1 - (product.discountprice / product.price)) * 100)
+    #     else:
+    #         discount_percent = None
+
+
+    paginator = Paginator(product_list, 20) # Show 25 contacts per page.
+    page= request.GET.get('page')
+    product_list  = paginator.get_page(page)
+    
+    context = {
+        'product_list':product_list,
+        'average_rate':average_rate,
+        'num_reviews':num_reviews,
+        'categories': categories,
+        }
+    resp = render(request, "index.html",context)
     resp.set_cookie('dev_name','Abdalla')
     return resp
 
 
 def products(request):
-    return render(request, "index.html")
+    return render(request, 'index.html')
+
 
 
 def product_detail(request , slug):
