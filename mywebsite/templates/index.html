@@ -167,8 +167,8 @@
 
               <a href="#" class="showcase-category">{{product.subcategory}}</a>
 
-              <a href="#">
-                <h3 style="font-size: 18px;font-weight: bold;">{{product.name}}</h3>
+              <a href="{{ product.get_absolute_url }}">
+               <h3 style="font-size: 18px;font-weight: bold;">{{ product.name }}</h3>
               </a>
               <div style="white-space: nowrap;">
                 <span style="font-size: 15px;color: rgb(37, 189, 37);">{{average_rate | stars}}</span>
@@ -181,8 +181,9 @@
                   <del style="margin-left: 4px;font-size: 14px;">${{ product.price }} </del>
                 </h6>
                 <h6 style="margin-left: 8px;font-size: 12px;background: #30a730;padding: 0 4px;color: #fff;
-                border-radius: 4px;font-weight: bold;padding-top: 1px;height: 18px;margin-top: 1px;">50% off</h6>
+                border-radius: 4px;font-weight: bold;padding-top: 1px;height: 18px;margin-top: 1px;">50 % off</h6>
               </div>
+              <h1>[[name]]</h1>
               {% else %}
                 <h6 style="margin-left: 4px;font-size: 18px;font-weight: bold;">${{ product.price }}</h6>
                 <div style="height: 36px;"></div>
@@ -471,7 +472,8 @@
 
    var  discountprice= JSON.parse('{{ product.discountprice|safe }}');
    var  price= JSON.parse('{{ product.price|safe }}');
- 
+
+   var pro = JSON.parse('{{ pro_json|safe }}');
  </script>
  {% endfor %} 
    {% endblock content %}

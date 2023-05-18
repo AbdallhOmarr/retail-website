@@ -5,6 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import Group,Permission
 from django.utils.text import slugify
 from django.utils import timezone
+from django.urls import reverse
 
 
 # make star shape
@@ -74,11 +75,15 @@ class Product(models.Model):
             self.Slug = slugify(self.name)
         super(Product,self).save(*args,**kwargs)
 
+    def get_absolute_url(self):
+        return reverse('product_detail', kwargs={'slug': self.Slug})    
+
 
 
 
 class Review(models.Model):
-    name= models.CharField(max_length=20,default="Mohamed Alashkar")
+    product = models.ForeignKey(Product,on_delete=models.CASCADE,null=True)
+    name = models.CharField(max_length=50)
     rate= models.DecimalField(max_digits=8,decimal_places=1,default=0)
     review = models.CharField(max_length=500)
     RDate = models.DateField(default=timezone.now)
@@ -158,3 +163,19 @@ class OrderItem(models.Model):
 
 #     def __str__(self):
 #         return f"{self.product.name} - {self.user.username}"
+
+
+
+
+# class Profile(models.Model):
+#     user = models.OneToOneField(Login, verbose_name=_("user"), on_delete=models.CASCADE)
+#     slug = models.SlugField(blank=True, null=True)
+#     image = models.ImageField(_("image"), upload_to='profile_img', blank=True, null=True)
+#     country = CountryField()
+#     address = models.CharField(max_length=100)
+#     join_date = models.DateTimeField(_('join date'), default=datetime.datetime.now)
+
+#     def save(self, *args, **kwargs):
+#         if not self.slug:
+#             self.slug = slugify(self.user.username)
+#         super(Profile, self).save(*args, **kwargs)
