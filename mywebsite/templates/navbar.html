@@ -1,3 +1,4 @@
+{% load static %}
 {% block navbar %}
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="container">
@@ -30,7 +31,10 @@
                         <a v-if="logged" class="nav-link active" href="#" aria-current="page">my cart</a>
                     </li>
                     <li class="nav-item">
-                        <a v-if="logged" class="nav-link active" href="#" aria-current="page">Logout</a>
+                        <a v-if="logged"
+                           class="nav-link active"
+                           href="{% url 'logout' %}"
+                           aria-current="page">Logout</a>
                     </li>
                 </ul>
             </div>

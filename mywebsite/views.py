@@ -11,7 +11,8 @@ from django.db.models import Avg
 import json
 from decimal import Decimal
 from django.contrib.auth.decorators import login_required
-from django_countries.fields import CountryField
+## this import created error no module django_counties found maybe i need to  install it on my side idk but i commented it for now
+# from django_countries.fields import CountryField 
 from .forms import CreateUserForm
 from django.contrib.auth.models import Group
 
