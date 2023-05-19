@@ -19,14 +19,20 @@ from . import views
 
 urlpatterns = [
     path("", views.home, name="index"),
-    path("", views.products, name="products"),
-    path('<slug:slug>',views.product_detail, name = 'product_detail'),
-    path("", views.about, name="about"),
-    path("", views.client, name="client"),
-    path("", views.contact, name="contact"),
-    path('login_register/', views.login_or_register, name='login_register'),
-    path('checkout/', views.checkout, name='checkout'),
-    path('logout/', views.logout_function, name='logout'),
-    path('vueapp',views.vueapp,name='vueapp')
+    path("products/", views.products, name="products"),
+    path("cart/", views.cart, name="cart"),
+    path("payment/", views.payment, name="payment"),
+    path('products/<slug:slug>/',views.product_detail, name = 'product_detail'),
+    path("about/", views.about, name="about"),
+    path("client/", views.client, name="client"),
+    path("contact/", views.contact, name="contact"),
 
+    path('login_register/', views.login_or_register, name='login_register'),
+    path("checkout/", views.checkout, name="checkout"),
+    path('logout/', views.logout_function, name='logout'),
+    path('vueapp/',views.vueapp,name='vueapp'),
+
+    path('register/',views.register,name='register'),
+    path('login/',views.login,name='login'),
+    # path('profile/<slug:slug>',views.profile,name='profile'),
 ]

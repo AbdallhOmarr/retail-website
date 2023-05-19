@@ -24,8 +24,6 @@ Vue.createApp({
             Rate2:rate2,
             Rate1:rate1,
 
-            // discountprice:80,
-            // originalPrice: 100, // add originalPrice to data object
              originalPrice : price,
             discountPrice : discountprice,
         
@@ -66,19 +64,64 @@ Vue.createApp({
         return {
 
             name:1,
-            price:300,
-            discountprice:100,
+            // originalPrice :price ,
+            // discountPrice :discountprice,
+            // pro: pro,
 
             
             
         }
     },
-    delimiters: ["[#", "#]"],
-    
-    
-  
-
+    delimiters: ["[[", "]]"],
+    // computed: {
+    //     discount() {
+    //     for (var i = 0; i < this.pro.length; i++) {  
+    //       return ((this.pro[i].price - this.pro[i].discountprice) / this.pro[i].price) * 100;
+    //       break;
+    //     }
+    //     }
+    //   },
+    //   methods: {
+    //   formatDiscount(discount) {
+    //     return Math.floor(discount);
+    //   }
 
 }).mount("#products")
 
 
+
+
+Vue.createApp({
+    data() {
+        return {
+          num:1,
+        }
+    },
+    delimiters: ["[[", "]]"],
+
+    methods: {
+        addTask: function(){
+          this.tasks.push({words: this.taskText, done:false});
+          this.taskText='';
+        },
+        deleteTask: function(index){
+        this.tasks.splice(index,1);
+        },
+        deleteAll: function(){
+          this.tasks = [];
+        }
+      },
+     
+
+}).mount("#cart")
+
+
+
+Vue.createApp({
+    data() {
+        return {
+          num:'mohamed',
+        }
+    },
+    delimiters: ["[[", "]]"],
+}).mount("#register")

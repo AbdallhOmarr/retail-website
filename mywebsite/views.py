@@ -8,11 +8,25 @@ from django.contrib import messages
 from .models import Product, Review, Category,SubCategory
 from django.core.paginator import Paginator
 from django.db.models import Avg
+import json
+from decimal import Decimal
+from django.contrib.auth.decorators import login_required
+from django_countries.fields import CountryField
+from .forms import CreateUserForm
+from django.contrib.auth.models import Group
+
 
 # Create your views here.
 
 def vueapp(request):
     return render(request,"vueapp.html")
+
+
+class DecimalEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Decimal):
+            return float(obj)
+        return super(DecimalEncoder, self).default(obj)
     
 def home(request):
     product_list = Product.objects.all()
@@ -20,15 +34,10 @@ def home(request):
     average_rate = round(float(average_value['rate__avg']), 1)
     num_reviews = Review.objects.count()
     categories = Category.objects.all()
+    # pro = Product.objects.values('discountprice','price')
+    # pro_json = json.dumps(list(pro), cls=DecimalEncoder)
+    # pro = Product.objects.values('price', 'discountprice').annotate(discount=(F('price') - F('discountprice')) / F('price') * 100)
 
-
-
-
-    # for product in product_list:
-    #     if product.discountprice:
-    #         discount_percent = round((1 - (product.discountprice / product.price)) * 100)
-    #     else:
-    #         discount_percent = None
 
 
     paginator = Paginator(product_list, 20) # Show 25 contacts per page.
@@ -40,10 +49,14 @@ def home(request):
         'average_rate':average_rate,
         'num_reviews':num_reviews,
         'categories': categories,
+        # 'pro_json':pro_json,
+        # 'pro':pro,
         }
     resp = render(request, "index.html",context)
     resp.set_cookie('dev_name','Abdalla')
     return resp
+
+
 
 
 def products(request):
@@ -196,3 +209,63 @@ def logout_function(request):
 def checkout(request):
     context = {}
     return render(request,"checkout.html",context)
+
+
+def cart(request):
+    context = {}
+    return render(request,"cart.html",context)
+
+def payment(request):
+    context = {}
+    return render(request,"payment.html",context)
+
+
+
+
+
+def register(request):
+    form = CreateUserForm()
+
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form. is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+
+            group = Group.objects.get(name = 'customer')
+            user.groups.add(group)
+
+            messages.success(request, 'Accounts Was created for ' + username)
+            return redirect('accounts:login')
+
+    context = {'form':form}
+    return render(request,'register.html',context)
+
+
+
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username ,password = password )
+
+        if user is not None:
+                login(request,user)
+                return redirect('accounts:home')
+        
+        else:
+            messages.info(request, 'Username or password is incorrect')
+
+
+    context = {}
+    return render(request,'login.html',context)
+
+
+
+# @login_required(login_url='/accounts/login/')
+# def profile(request, slug):
+#    profile = get_object_or_404(Profile, slug=slug)
+#    context = {'profile':profile}
+#    return render(request, 'profile.html', context)
