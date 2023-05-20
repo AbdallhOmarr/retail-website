@@ -78,6 +78,8 @@ def product_detail(request , slug):
     product_detail = Product.objects.get(Slug=slug)
     user_review = Review.objects.all()
     num_items = Review.objects.count()
+    product_list = Product.objects.all()
+
 
     # Calculate the average rate as a float value
     average_value = Review.objects.aggregate(Avg('rate'))
@@ -126,6 +128,7 @@ def product_detail(request , slug):
         'num_items':num_items,
         'average_rate':average_rate,
         'stars':stars,
+        'product_list':product_list,
         
         'rate5':rate5,
         'rate4':rate4,

@@ -120,8 +120,15 @@ Vue.createApp({
 Vue.createApp({
     data() {
         return {
-          num:'mohamed',
+            fieldType: 'password',
+            show: false,
+            password:null,
         }
     },
     delimiters: ["[[", "]]"],
+    methods: {
+        switchField(){
+          this.fieldType = this.fieldType=== 'password'?'text':'password';
+        },
+    }
 }).mount("#register")

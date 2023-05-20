@@ -326,7 +326,7 @@
              #REVIEWS
 ------------------------------------->
 
-        <div class="content-one" v-if="activeTab==='2' ">
+        <div class="content-two" v-if="activeTab==='2' ">
           <div class="over d-md-flex bg-light">
 
             <div class="d-flex allrate col-xl-8 col-lg-7  col-md-7 col-sm-12">
@@ -444,37 +444,18 @@
   
   
           <hr>
+
+
+
   <div class="mt-4 d-flex justify-content-center">
       <img  src="{% static 'images/re.webp' %}" class="mr-3" style="width: 40px;height: 40px;margin-top: 11px;" alt="photo">
       <h1 style="font-size: 38px;font-weight: bold;white-space: nowrap;">Reviews</h1>
       <img  src="{% static 'images/re.webp' %}" class="ml-3" style="width: 40px;height: 40px;margin-top: 11px;" alt="photo">
   
       </div>
-        <div  style="display: grid;grid-template-rows: repeat(2, 1fr);grid-column-gap: 20px;">
+        <div>
   
-   <!-- <div class="swiper mySwiper">
-      <div class="swiper-wrapper mt-5">
-         {% for x in user_review %}
-        <div class="swiper-slide">
-        
-          <div class="client_img mt-3"><img src="{% static 'images/client-img.png' %}" alt="photo"></div>
-  
-          <h3 class="name_text mt-3" style="margin-left: 66px;">{{x.name}}</h3>
-     
-        <div class="star-rating">
-          <span style="font-size: 20px;margin: 2px 2px;color: rgb(236, 202, 5);margin-left: 126px;" class="star">{{x.rate| stars }}</span>
-        </div>
-        <p style="color: #000;">{{x.review}}</p>
-  
-        <p class="date-review mt-2 ml-4">{{ x.formatted_date }}</p>
-    
-       
-  
-       
-  
-      </div>
-      {% endfor %} 
-    </div> -->
+   
   
             {% for x in user_review %}
             <div class="ConReview">
@@ -507,7 +488,7 @@
   
    {% if user_review.has_other_pages %}
   
-   <div class="d-flex mb-4 mt-5" style="justify-content: center;">
+   <div class="d-flex mb-5 mt-2" style="justify-content: center;">
   
    
      {% if user_review.has_previous %}
@@ -551,97 +532,87 @@
   </div>
   {% endif %}
   </div>
+</div>        
         </div>
-      </div>
+  
     </div>
 
 
 
 
-    <div  style="width: 100%;background-color: #e5e0e0;z-index: -10;padding-top: 18px;height: fit-content;">
+    <div  style="width: 100%;background-color: #e5e0e0;z-index: -10;padding-top: 18px;height: 500px;">
       <h1 style="font-weight: bold;margin-top:40px;margin-left: 50px;">How about these?</h1>
    
-      <div class="mySwiperslide" style="width: 920px;">
+      <div class="mySwiperslide mt-3" style="width: 920px;">
         <div class="swiper-wrapper"style="width: 1000px;" >
+          {% for product in product_list %}
           <div class="swiper-slide">
-            <div class="product_box">
-              <h4 class="bursh_text">Beauty Bursh</h4>
-              <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-              <img src="{% static 'images/img-3.png' %}" class="image_1">
-              <div class="btn_main">
-                 <div class="buy_bt">
-                    <ul>
-                       <li class="active"><a href="#">Buy Now</a></li>
-                       <li><a href="#">Buy Now</a></li>
-                    </ul>
-                 </div>
-                 <h3 class="price_text">Price $30</h3>
-              </div>
-           </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="product_box">
-              <h4 class="bursh_text">Beauty Bursh</h4>
-              <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-              <img src="{% static 'images/img-3.png' %}" class="image_1">
-              <div class="btn_main">
-                 <div class="buy_bt">
-                    <ul>
-                       <li class="active"><a href="#">Buy Now</a></li>
-                       <li><a href="#">Buy Now</a></li>
-                    </ul>
-                 </div>
-                 <h3 class="price_text">Price $30</h3>
-              </div>
-           </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="product_box">
-              <h4 class="bursh_text">Beauty Bursh</h4>
-              <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-              <img src="{% static 'images/img-3.png' %}" class="image_1">
-              <div class="btn_main">
-                 <div class="buy_bt">
-                    <ul>
-                       <li class="active"><a href="#">Buy Now</a></li>
-                       <li><a href="#">Buy Now</a></li>
-                    </ul>
-                 </div>
-                 <h3 class="price_text">Price $30</h3>
-              </div>
-           </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="product_box">
-              <h4 class="bursh_text">Beauty Bursh</h4>
-              <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-              <img src="{% static 'images/img-3.png' %}" class="image_1">
-              <div class="btn_main">
-                 <div class="buy_bt">
-                    <ul>
-                       <li class="active"><a href="#">Buy Now</a></li>
-                       <li><a href="#">Buy Now</a></li>
-                    </ul>
-                 </div>
-                 <h3 class="price_text">Price $30</h3>
-              </div>
-           </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="product_box">
-              <h4 class="bursh_text">Beauty Bursh</h4>
-              <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p>
-              <img src="{% static 'images/img-3.png' %}" class="image_1">
-              <div class="btn_main">
-                 <div class="buy_bt">
-                    <ul>
-                       <li class="active"><a href="#">Buy Now</a></li>
-                       <li><a href="#">Buy Now</a></li>
-                    </ul>
-                 </div>
-                 <h3 class="price_text">Price $30</h3>
-              </div>
-           </div>
+            <div class="product-main">
+
+              <div class="product-grid1 d-flex"  style="margin:10px 20px;">
+      
+               
+                
+                <div class="showcase" style="width: 240px;">
+      
+                  <div class="showcase-banner" style="border-bottom: 1px solid #eee;">
+      
+                    {% if product.MainImage %}
+                    <img src="{{ product.MainImage.url }}"  alt="Mens Winter Leathers Jackets">
+                    {% endif %}
+      
+                    {% if product.bestseller %}
+                    <p class="showcase-badge angle black">sale</p>
+                    {% endif %}
+                    {% if product.new %}
+                    <p class="showcase-badge angle pink">new</p>
+                    {% endif %}
+      
+                  
+                  </div>
+      
+                  <div class="showcase-content" style="background: #f6f6f6;box-shadow:0 0 10px rgba(0, 0, 0,0.5) ;">
+                    <div class="d-flex justify-content-start">
+                    <a href="#" style="font-weight: 500;font-size: 16px;color:rgb(198, 68, 54);font-family: serif;">{{product.subcategory}}</a>
+                  </div>
+                  <div class="d-flex justify-content-start">
+                    <a href="{{ product.get_absolute_url }}">
+                     <h3 style="font-size: 18px;font-weight: bold;">{{ product.name }}</h3>
+                    </a>
+                  </div>
+                    <div class="d-flex justify-content-start" style="white-space: nowrap;">
+                      <span style="font-size: 15px;color: #25bd25;">{{average_rate | stars}}</span>
+                   </div>
+                    {% if product.discountprice > 0 %}
+                    <div class="d-flex justify-content-start">
+                    <h6 style="margin-left: 4px;font-size: 18px;color: #1b1919;font-weight: bold;">${{ product.discountprice }}</h6>
+                  </div>
+                    <div class="d-flex">
+                      <h6>
+                        <del style="margin-left: 4px;font-size: 14px;">${{ product.price }} </del>
+                      </h6>
+                      <h6 style="margin-left: 8px;font-size: 12px;background: #30a730;padding: 0 4px;color: #fff;
+                      border-radius: 4px;font-weight: bold;padding-top: 1px;height: 18px;margin-top: 1px;">50 % off</h6>
+                    </div>
+                    {% else %}
+                    <div class="d-flex justify-content-start">
+                      <h6 style="margin-left: 4px;font-size: 18px;font-weight: bold;">${{ product.price }}</h6>
+                    </div>
+                      <div style="height: 36px;"></div>
+                    {% endif %}
+       
+      
+                  </div>
+      
+                </div>
+               
+               </div>
+      
+               </div>
+            </div>
+
+            {% endfor %} 
+
           </div>
 
       </div>
@@ -938,7 +909,7 @@
         <img src="{% static 'images/payment.png' %}"  alt="payment method" class="payment-img">
 
         <p class="copyright">
-          Copyright &copy; <a href="#">Anon</a> all rights reserved.
+          Copyright &copy; <a href="#">Online Store</a> all rights reserved.
         </p>
 
       </div>
@@ -967,6 +938,151 @@
   var discountprice = JSON.parse('{{ product_detail.discountprice |safe }}');
   var price = JSON.parse('{{ product_detail.price |safe }}');
 </script>
+
+
+<style>
+
+.product-grid1 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+  grid-template-columns: 1fr;
+}
+
+.product-grid1 .showcase {
+  border: 1px solid var(--cultured);
+  -webkit-border-radius: var(--border-radius-md);
+          border-radius: var(--border-radius-md);
+  overflow: hidden;
+  -webkit-transition: var(--transition-timing);
+  -o-transition: var(--transition-timing);
+  transition: var(--transition-timing);
+}
+
+.product-grid1 .showcase:hover { -webkit-box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1); box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1); }
+
+.product-grid1 .showcase-banner { position: relative; }
+
+.product-grid1 .product-img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-transition: var(--transition-timing);
+  -o-transition: var(--transition-timing);
+  transition: var(--transition-timing);
+}
+
+
+.product-grid1 .product-img.hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  opacity: 0;
+}
+
+.product-grid1 .showcase:hover .product-img.hover { opacity: 1; }
+
+.product-grid1 .showcase:hover .product-img.default { opacity: 0; }
+
+.product-grid1 .showcase:hover .product-img { -webkit-transform: scale(1.1); -ms-transform: scale(1.1); transform: scale(1.1); }
+
+.product-grid1 .showcase-badge {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  background: var(--ocean-green);
+  font-size: var(--fs-8);
+  font-weight: var(--weight-500);
+  color: var(--white);
+  padding: 0 8px;
+  -webkit-border-radius: var(--border-radius-sm);
+          border-radius: var(--border-radius-sm);
+  z-index: 3;
+}
+
+.product-grid1 .showcase-badge.angle {
+  top: -12px;
+  left: -49px;
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  text-transform: uppercase;
+  font-size: 11px;
+  padding: 5px 40px;
+}
+
+.product-grid1 .showcase-badge.black { background: var(--eerie-black); }
+
+.product-grid1 .showcase-badge.pink { background: var(--salmon-pink); }
+
+.product-grid .showcase-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  -webkit-transform: translateX(50px);
+      -ms-transform: translateX(50px);
+          transform: translateX(50px);
+  -webkit-transition: var(--transition-timing);
+  -o-transition: var(--transition-timing);
+  transition: var(--transition-timing);
+  z-index: 3;
+}
+
+.product-grid1 .showcase:hover .showcase-actions { -webkit-transform: translateX(0); -ms-transform: translateX(0); transform: translateX(0); }
+
+
+.product-grid1 .showcase-content { padding: 15px 20px 0; }
+
+.product-grid .showcase-category {
+  color: var(--salmon-pink);
+  font-size: var(--fs-9);
+  font-weight: var(--weight-500);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.product-grid1 .showcase-title {
+  color: var(--sonic-silver);
+  font-size: var(--fs-8);
+  font-weight: var(--weight-300);
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  -webkit-transition: var(--transition-timing);
+  -o-transition: var(--transition-timing);
+  transition: var(--transition-timing);
+}
+
+.product-grid1 .showcase-title:hover { color: var(--eerie-black); }
+
+.product-grid1 .showcase-rating {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: var(--sandy-brown);
+  margin-bottom: 10px;
+}
+
+.product-grid1 .price-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  font-size: var(--fs-7);
+  color: var(--eerie-black);
+  margin-bottom: 10px;
+}
+
+.product-grid1 .price { font-weight: var(--weight-700); }
+
+.product-grid1 del { color: var(--sonic-silver); }
+
+</style>
 
 
 
